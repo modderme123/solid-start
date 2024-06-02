@@ -18,7 +18,7 @@ export default function lazyRoute<T>(component: any, clientManifest: any, server
 
       if (!mod[exported]) console.error(`Module ${component.src} does not export ${exported}`);
       const Component = mod[exported]
-      let assets = await clientManifest.inputs?.[component.src]?.assets();
+      let assets = await clientManifest.inputs?.[component.src]?.assets() ?? [];
       const styles = assets.filter((asset: Asset) => asset.tag === "style");
 
       if (typeof window !== "undefined" && import.meta.hot) {
